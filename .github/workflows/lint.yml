@@ -21,8 +21,4 @@ jobs:
         with:
           rust-version: stable
       - name: "Lint code"
-        uses: super-linter/super-linter@v6.7.0
-        with:
-          cargo: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: cargo clippy
