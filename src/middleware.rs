@@ -15,7 +15,7 @@ use futures::{future::LocalBoxFuture, FutureExt};
 use log::debug;
 use tokio::sync::Mutex;
 
-use crate::{backend::BackendProvider, RateLimiter};
+use crate::{backend::BackendProvider, limiter::RateLimiter};
 
 /// Factory that creates an instance of the `RateLimitedMiddleware`. You should
 /// use this factory for wrapping the crate's middleware.
@@ -83,7 +83,7 @@ where
 
     fn call(&self, req: ServiceRequest) -> Self::Future {
         let path = req.path();
-        let limit = self.limiter.get_limit(path);
+        let limit = self.limiter.get_limit(path, req.method().as_str());
         let connection_info = req.connection_info().clone();
 
         let ip = if connection_info.realip_remote_addr().is_some() {

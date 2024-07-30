@@ -5,7 +5,7 @@ use std::collections::HashMap;
 use chrono::Utc;
 use log::debug;
 
-use crate::{backend::BackendError, Limit, RequestId};
+use crate::{backend::BackendError, limit::Limit, RequestId};
 
 use super::{BackendProvider, Bucket};
 

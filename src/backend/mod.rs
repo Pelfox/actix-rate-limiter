@@ -5,7 +5,7 @@ use std::{error::Error, future::Future};
 
 use chrono::{DateTime, Utc};
 
-use crate::{Limit, RequestId};
+use crate::{limit::Limit, RequestId};
 
 pub mod memory;
 
